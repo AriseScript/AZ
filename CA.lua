@@ -955,8 +955,6 @@ local ConfigTab = CreateTab("Config", false)
 
 
 
-do -- Scoped to reduce active locals during obfuscation.
-
 -- ==========================================
 -- UPGRADE GUI DETECTOR
 -- Dropdown selects a card from PlayerGui.Upgrades.Panel.
@@ -1434,10 +1432,6 @@ getgenv().UpgradeDetectorThread = task.spawn(function()
     clearUpgradeHighlights()
 end)
 
-end -- Upgrade Detector / Auto Upgrade scope
-
-do -- Keep config-only helper locals out of the main script scope.
-
 -- ==========================================
 -- CONFIG UI HELPERS (these were missing, causing startup to stop here)
 -- ==========================================
@@ -1568,10 +1562,6 @@ CreateButton(ConfigTab, "Reload Config File", function()
     if not ok then sendNotification("Config Error", "Could not read config.json.", 3, Theme.AccentDark) end
 end)
 CreateLabel(ConfigTab, "Config file", ConfigFileAvailable and ConfigPath or "Executor file APIs unavailable")
-
-end -- Config UI helper scope
-
-do -- Scoped to reduce active locals during obfuscation.
 
 -- ==========================================
 -- 8. AUTO FARM & SELL ENGINE
@@ -2217,8 +2207,6 @@ getgenv().AriseAutomationThread = task.spawn(function()
     if targetHighlight then targetHighlight.Adornee = nil end
 end)
 
-end -- Auto Farm / Sell scope
-
 -- ==========================================
 -- FAR BIRD AURA
 -- ==========================================
@@ -2291,8 +2279,6 @@ CreateToggle(MainTab, "Bird Aura", false, function(state)
         end
     end)
 end)
-
-do -- Player feature locals are only needed inside this section.
 
 -- ==========================================
 -- PLAYER TAB
@@ -2519,8 +2505,6 @@ CreateToggle(PlayerTab, "Ultra FPS Boost (Invisible Map)", false, function(state
         end
     end
 end)
-
-end -- Player tab scope
 
 -- ==========================================
 -- ADVANCED DASHBOARD (INFORMATION TAB)
